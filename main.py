@@ -64,7 +64,7 @@ def end_program():
 
 def think():
     # use document saved to train the model
-    print("Thinking... to stop press Ctrl-C")
+    print("Thinking... to stop press Ctrl-C and to end write stop. ")
 
     while True:
         try:
@@ -85,7 +85,7 @@ def think():
 
 
 def run_llm_prompt(user_input):
-    answer = "this would be the LLM api answer for " + user_input
+    answer = " esta seria a resposta da LLM para a questão " + user_input
     return answer
 
 def make_answer(user_input):
@@ -96,7 +96,7 @@ def run():
     # ask prompt
     while True:
         try:
-            user_input = inputimeout(prompt='You have 15 seconds to enter something: ', timeout=15)
+            user_input = inputimeout(prompt='Tens 20 segundos para escrever uma coisa ou escrever stop para parar: ', timeout=20)
         except TimeoutOccurred:
             user_input = 'Time is up!'
             print(user_input)
@@ -106,6 +106,7 @@ def run():
         if user_input == 'Time is up!':
             break
         if user_input == 'stop':
+            print("Saindo...")
             break
         answer = make_answer(user_input)
         print(answer)
@@ -120,4 +121,5 @@ def run():
 
 if __name__ == "__main__":
     llm = SimpleLLM()
+    print("Quando a LLM começar a sonhar podes para-la com CTRL-C e depois escrever stop, senão volta a sonhar.")
     run()
