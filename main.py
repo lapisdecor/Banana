@@ -70,7 +70,7 @@ def think():
         try:
 
             # retrain LLM
-            # this would actually train the local LLM while no a key is pressed
+            # this would actually train the local LLM while no ctrl-c is pressed
             with open("doc.txt") as f:
                 text = f.read()
 
@@ -79,7 +79,7 @@ def think():
 
 
         except KeyboardInterrupt:
-            print('cancelled by user')  # overload
+            print('Banana parou de sonhar!')  # overload
             break
     run()
 
@@ -111,7 +111,7 @@ def run():
         answer = make_answer(user_input)
         print(answer)
         # save input and answer to document
-        with open("doc.txt", "w") as f:
+        with open("doc.txt", "a") as f:
             f.write(user_input)
             f.write(answer)
     if user_input == 'stop':
