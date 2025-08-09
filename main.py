@@ -75,7 +75,14 @@ def think():
                 text = f.read()
 
             llm.train(text)
-            print(llm.generate_text(random.choice(text.split()), 5), end=' ')
+            # pick up two random words from text
+            all_words = text.split() # this should be done outside the function
+            my_set = set(all_words)
+            my_sentence = list(my_set)
+            word1 = random.choice(my_sentence)
+            word2 = random.choice(my_sentence)
+            words = " " + " ".join([word1, word2]) + " "
+            print(llm.generate_text(words, 5), end=' ')
 
 
         except KeyboardInterrupt:
@@ -96,7 +103,7 @@ def run():
     # ask prompt
     while True:
         try:
-            user_input = inputimeout(prompt='Tens 20 segundos para escrever uma coisa ou escrever stop para parar: ', timeout=20)
+            user_input = inputimeout(prompt='Tens 20 segundos para escrever uma coisa seguido de enter ou escrever stop para parar: ', timeout=20)
         except TimeoutOccurred:
             user_input = 'Time is up!'
             print(user_input)
